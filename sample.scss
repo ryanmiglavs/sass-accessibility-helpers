@@ -19,8 +19,8 @@ a {
 }
 
 /**
- * If you have more custom transitions, you can prep an element with default-ready-for-focus-styles,
- * then specify on :focus to add default-focus-styles
+ * If you need your own custom focus styling in addition, you can prep an element with
+ * default-ready-for-focus-styles, then specify on :focus to add default-focus-styles
  */
 button {
   // your styles
@@ -28,6 +28,8 @@ button {
   @include default-ready-for-focus-styles;
   
   &:focus {
+    // your custom focus styling
+    
     @include default-focus-styles;
   }
 }
