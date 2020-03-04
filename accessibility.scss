@@ -1,0 +1,54 @@
+/**
+* Mixin to add to an element that _will_ have focus, but doesn't yet.
+* For example, use on a:link, or button.
+*
+* If your element does not have its own animations, use add-focus-styles
+* instead. Use this on its own to avoid animation conflicts.
+*
+* If you use this on its own, you should also specify transition for box-shadow,
+* to get the animated focus styling.
+*/
+@mixin default-ready-for-focus-styles {
+  box-shadow: 0 0 30px 0 rgba(var(--focus-color-rgb-vals), 0), 0 0 0 0 rgba(var(--focus-color-rgb-vals), 0);
+}
+
+/**
+* Mixin to add to an element that has focus, e.g. a:focus.
+*/
+@mixin default-focus-styles($alpha: 0.4) {
+  // We use box-shadow instead of outline, to accommodate rounded corners
+  outline: none !important;
+  box-shadow: 0 0 10px 0 rgba(var(--focus-color-rgb-vals), 1), 0 0 0 2px rgba(var(--focus-color-rgb-vals), 1);
+
+  // Disable keyboard focus styling when the user is not using the keyboard
+  .blu-focus-disabled & {
+    box-shadow: none !important;
+  }
+}
+
+@mixin add-focus-styles($alpha: 0.4) {
+  transition: box-shadow .4s ease; // @TODO: Make accessibility duration a new CSS var
+
+  @include default-ready-for-focus-styles;
+
+  &:focus {
+    transition-duration: .3s;
+
+    @include default-focus-styles($alpha);
+  }
+}
+
+@mixin focusable($alpha: 0.4) {
+  @content;
+
+  @include add-focus-styles($alpha);
+}
+
+/**
+* Mixin to remove focus styles.
+* CRITICAL: You MUST set new focus styles if you use this!
+*/
+@mixin reset-focus-styles {
+  outline: none !important;
+  box-shadow: none !important;
+}
