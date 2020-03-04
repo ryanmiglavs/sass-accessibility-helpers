@@ -1,0 +1,33 @@
+/**
+ * In most cases, you just use add-focus-styles
+ */
+a {
+  &:link {
+    // your styles here
+  }
+  &:visited {
+    // your styles here
+  }
+  &:hover {
+    // your styles here
+  }
+  &:active {
+    // your styles here
+  }
+
+  @include add-focus-styles; // <-- This handles everything for you
+}
+
+/**
+ * If you have more custom transitions, you can prep an element with default-ready-for-focus-styles,
+ * then specify on :focus to add default-focus-styles
+ */
+button {
+  // your styles
+  
+  @include default-ready-for-focus-styles;
+  
+  &:focus {
+    @include default-focus-styles;
+  }
+}
