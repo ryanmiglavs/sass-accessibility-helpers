@@ -1,3 +1,10 @@
+// You probably want to put these definitions in your colors defs file, or some other SASS file
+// that will only get imported once.
+:root {
+  --focus-color-rgb-vals: 0, 87, 231;
+  --focus-color: rgba(var(--focus-color-rgb-vals), .6);
+}
+
 /**
 * Mixin to add to an element that _will_ have focus, but doesn't yet.
 * For example, use on a:link, or button.
